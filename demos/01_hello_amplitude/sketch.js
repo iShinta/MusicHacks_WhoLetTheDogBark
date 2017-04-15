@@ -10,6 +10,7 @@ var amplitude;
 var mapMax = 1.0;
 
 var backgroundColor;
+var paw;
 
 var threshold = 0.1;
 var cutoff = 0;
@@ -22,6 +23,7 @@ var pawsy = new Array(50);
 function preload() {
   // load the sound, but don't play it yet
   soundFile = loadSound('../../music/Broke_For_Free_-_01_-_As_Colorful_As_Ever.mp3')
+  paw = loadImage("paw.png");
 }
 
 function setup() {
@@ -72,7 +74,7 @@ function draw() {
   for(var i = 0; i < paws.length; i++){
     stroke(0);
     fill(0, 100);
-    drawPaw(pawsx[i], pawsy[i], paws[i]*100, paws[i]*100); //x, y, width, height
+    image(paw, pawsx[i], pawsy[i], paw.width*paws[i]/2, paw.height*paws[i]/2);
   }
 
   //
@@ -91,26 +93,4 @@ function draw() {
   rect(0, y, 20, y);
   stroke(0);
   line(0, ythreshold, 19, ythreshold);
-}
-
-function drawPaw(x, y, w, h){
-  ellipseMode(CORNER);
-  fill(255); //White
-  ellipse(x+w*0.15, y-h/8, w*0.8, h*0.8);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x, y, w*0.3, h*0.3);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x+2*w/7, y-h/3, w*0.3, h*0.3);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x+4*w/7, y-h/3, w*0.3, h*0.3);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x+6*w/7, y, w*0.3, h*0.3);
 }
