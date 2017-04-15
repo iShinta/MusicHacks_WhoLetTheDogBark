@@ -10,8 +10,8 @@
 var input;
 var openMouthTrue;
 var img;
-var mic, soundFile;
-var amplitude;
+var soundFile;
+
 var mapMax = 1.0;
 
 var backgroundColor;
@@ -56,23 +56,19 @@ function setup() {
   openMouthTrue = false;
   c = createCanvas(windowWidth, windowHeight);
   
-  background(255);
+
 
   backgroundColor = color( random(0,255), random(0,255), random(0,255) );
 
-  mic = new p5.AudioIn();
-  mic.start();
+ 
 
-  input = mic;
+  input = soundFile;
 
   soundFile.play();
 
-  amplitude = new p5.Amplitude();
   amplitudeDog = new p5.Amplitude();
-
   amplitudeDog.setInput(soundFile);
-  amplitude.setInput(mic);
-  amplitude.smooth(0.8); // <-- try this!
+  amplitudeDog.smooth(0.9); // <-- try this!
 }
 
 function draw() {
@@ -86,7 +82,7 @@ function draw() {
   }
   pop();
   // Get the overall volume (between 0 and 1.0)
-  var volume = input.getLevel();
+  var volume = amplitudeDog.getLevel();
 
   
   // If the volume > threshold + cutoff, a rect is drawn at a random location.
@@ -134,18 +130,10 @@ function draw() {
 }
 
 
-function drawDogMouthOpen() {
-  
-}
-
-function drawDogMouthClosed() {
-  
-}
-
 function detectBeat(level) {
   if (level  > beatCutoff && level > beatThreshold){
     onBeat();
-    beatCutoff = level * 1.2 //1.2;
+    beatCutoff = level * 1.2; //1.2;
     framesSinceLastBeat = 0;
     
   } else{
