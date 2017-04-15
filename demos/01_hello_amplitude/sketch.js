@@ -46,9 +46,9 @@ var pawsy = new Array(50);
 function preload() {
   // load the sound, but don't play it yet
   soundFile = loadSound('06 Shake It Off.m4a');
-  soundFile.volume = 0.1;
+  // soundFile.volume = 0.1;
   var woof = new Audio('woof.mp3');
-  woof.volume = 1.0;
+  // woof.volume = 1.0;
   imgDogClosedMouth = loadImage("rsz_dogepls1_clipped_rev_1.png");
   imgDogOpenMouth = loadImage("rsz_finalopenmouth_clipped_rev_1.png");
   paw = loadImage("paw.png");
