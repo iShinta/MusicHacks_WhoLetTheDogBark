@@ -42,13 +42,14 @@ var framesSinceLastBeat = 0; // once this equals beatHoldFrames, beatCutoff star
 var paws = new Array(50);
 var pawsx = new Array(50);
 var pawsy = new Array(50);
+var woof;
 
 function preload() {
   // load the sound, but don't play it yet
   soundFile = loadSound('06 Shake It Off.m4a');
-  // soundFile.volume = 0.1;
-  var woof = new Audio('woof.mp3');
-  // woof.volume = 1.0;
+  soundFile.volume = 0.1;
+  woof = new Audio('woof.mp3');
+  woof.volume = 1.0;
   imgDogClosedMouth = loadImage("rsz_dogepls1_clipped_rev_1.png");
   imgDogOpenMouth = loadImage("rsz_finalopenmouth_clipped_rev_1.png");
   paw = loadImage("paw.png");
