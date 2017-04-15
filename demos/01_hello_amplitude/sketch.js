@@ -28,7 +28,7 @@ var decayRate = 0.95;
 // frameRate() is usually around 60 frames per second,
 // so 20 fps = 3 beats per second, meaning if the song is over 180 BPM,
 // we wont respond to every beat.
-var beatHoldFrames = 80;
+var beatHoldFrames = 15;
 
 // what amplitude level can trigger a beat?
 var beatThreshold = 0.11; 
@@ -45,7 +45,7 @@ var pawsy = new Array(50);
 
 function preload() {
   // load the sound, but don't play it yet 
-  soundFile = loadSound('../../music/YACHT_-_06_-_Summer_Song_Instrumental.mp3');
+  soundFile = loadSound('06 Shake It Off.m4a');
   imgDogClosedMouth = loadImage("rsz_dogepls1_clipped_rev_1.png");
   imgDogOpenMouth = loadImage("rsz_finalopenmouth_clipped_rev_1.png");
   paw = loadImage("paw.png");
@@ -53,7 +53,7 @@ function preload() {
 }
 
 function setup() {
-  openMouthTrue = 0;
+  openMouthTrue = false;
   c = createCanvas(windowWidth, windowHeight);
   
   background(255);
@@ -79,9 +79,9 @@ function draw() {
 
   background(backgroundColor);
   push();
-  if (openMouthTrue == 1) {
+  if (openMouthTrue == true) {
     image(imgDogOpenMouth, 0, 0);
-  } else {
+  } else if (openMouthTrue == false) {
     image(imgDogClosedMouth, 0, 0);
   }
   pop();
@@ -161,10 +161,6 @@ function detectBeat(level) {
 
 function onBeat() {
   backgroundColor = color( random(0,255), random(0,255), random(0,255) );
-  if (openMouthTrue == 1) {
-    openMouthTrue = 0;
-  } else {
-    openMouthTrue = 1;
-  }
+  openMouthTrue = !openMouthTrue;
 }
 
