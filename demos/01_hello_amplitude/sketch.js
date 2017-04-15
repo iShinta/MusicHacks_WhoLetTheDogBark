@@ -1,5 +1,5 @@
 /*
-  NEW 
+  NEW
   */
 
 /*
@@ -31,7 +31,7 @@ var decayRate = 0.95;
 var beatHoldFrames = 15;
 
 // what amplitude level can trigger a beat?
-var beatThreshold = 0.11; 
+var beatThreshold = 0.11;
 
 // When we have a beat, beatCutoff will be reset to 1.1*beatThreshold, and then decay
 // Level must be greater than beatThreshold and beatCutoff before the next beat can trigger.
@@ -44,7 +44,7 @@ var pawsx = new Array(50);
 var pawsy = new Array(50);
 
 function preload() {
-  // load the sound, but don't play it yet 
+  // load the sound, but don't play it yet
   soundFile = loadSound('06 Shake It Off.m4a');
   imgDogClosedMouth = loadImage("rsz_dogepls1_clipped_rev_1.png");
   imgDogOpenMouth = loadImage("rsz_finalopenmouth_clipped_rev_1.png");
@@ -55,12 +55,12 @@ function preload() {
 function setup() {
   openMouthTrue = false;
   c = createCanvas(windowWidth, windowHeight);
-  
+
 
 
   backgroundColor = color( random(0,255), random(0,255), random(0,255) );
 
- 
+
 
   input = soundFile;
 
@@ -84,11 +84,11 @@ function draw() {
   // Get the overall volume (between 0 and 1.0)
   var volume = amplitudeDog.getLevel();
 
-  
+
   // If the volume > threshold + cutoff, a rect is drawn at a random location.
   // The louder the volume, the larger the rectangle.
   if (volume > threshold + cutoff) {
- 
+
 
     paws.push(volume);
     paws.splice(0, 1);
@@ -135,7 +135,7 @@ function detectBeat(level) {
     onBeat();
     beatCutoff = level * 1.2; //1.2;
     framesSinceLastBeat = 0;
-    
+
   } else{
     if (framesSinceLastBeat <= beatHoldFrames){
       framesSinceLastBeat ++;
@@ -148,7 +148,8 @@ function detectBeat(level) {
 }
 
 function onBeat() {
+  var woof = new Audio('woof.mp3');
+  woof.play();
   backgroundColor = color( random(0,255), random(0,255), random(0,255) );
   openMouthTrue = !openMouthTrue;
 }
-
