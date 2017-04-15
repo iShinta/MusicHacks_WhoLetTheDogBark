@@ -28,7 +28,7 @@ var decayRate = 0.95;
 // frameRate() is usually around 60 frames per second,
 // so 20 fps = 3 beats per second, meaning if the song is over 180 BPM,
 // we wont respond to every beat.
-var beatHoldFrames = 30;
+var beatHoldFrames = 80;
 
 // what amplitude level can trigger a beat?
 var beatThreshold = 0.11; 
@@ -76,8 +76,15 @@ function setup() {
 }
 
 function draw() {
-  background(backgroundColor);
 
+  background(backgroundColor);
+  push();
+  if (openMouthTrue == 1) {
+    image(imgDogOpenMouth, 0, 0);
+  } else {
+    image(imgDogClosedMouth, 0, 0);
+  }
+  pop();
   // Get the overall volume (between 0 and 1.0)
   var volume = input.getLevel();
 
@@ -85,7 +92,7 @@ function draw() {
   // If the volume > threshold + cutoff, a rect is drawn at a random location.
   // The louder the volume, the larger the rectangle.
   if (volume > threshold + cutoff) {
-    backgroundColor = color( random(0,255), random(0,255), random(0,255) );
+ 
 
     paws.push(volume);
     paws.splice(0, 1);
@@ -128,18 +135,19 @@ function draw() {
 
 
 function drawDogMouthOpen() {
-  image(imgDogOpenMouth, 0, 0);
+  
 }
 
 function drawDogMouthClosed() {
-  image(imgDogClosedMouth, 0, 0);
+  
 }
 
 function detectBeat(level) {
   if (level  > beatCutoff && level > beatThreshold){
     onBeat();
-    beatCutoff = level *1.2;
+    beatCutoff = level * 1.2 //1.2;
     framesSinceLastBeat = 0;
+    
   } else{
     if (framesSinceLastBeat <= beatHoldFrames){
       framesSinceLastBeat ++;
@@ -154,10 +162,8 @@ function detectBeat(level) {
 function onBeat() {
   backgroundColor = color( random(0,255), random(0,255), random(0,255) );
   if (openMouthTrue == 1) {
-    drawDogMouthOpen();
     openMouthTrue = 0;
   } else {
-    drawDogMouthClosed();
     openMouthTrue = 1;
   }
 }
