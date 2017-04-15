@@ -21,7 +21,7 @@ var threshold = 0.1;
 var cutoff = 0;
 var decayRate = 0.95;
 
-<<<<<<< HEAD
+
 // :: Beat Detect Variables
 // how many draw loop frames before the beatCutoff starts to decay
 // so that another beat can be triggered.
@@ -39,22 +39,17 @@ var beatCutoff = 0;
 var beatDecayRate = 0.98; // how fast does beat cutoff decay?
 var framesSinceLastBeat = 0; // once this equals beatHoldFrames, beatCutoff starts to decay.
 
+var paws = new Array(50);
+var pawsx = new Array(50);
+var pawsy = new Array(50);
 
 function preload() {
   // load the sound, but don't play it yet 
   soundFile = loadSound('../../music/YACHT_-_06_-_Summer_Song_Instrumental.mp3');
   imgDogClosedMouth = loadImage("rsz_dogepls1_clipped_rev_1.png");
   imgDogOpenMouth = loadImage("rsz_finalopenmouth_clipped_rev_1.png");
-=======
-var paws = new Array(50);
-var pawsx = new Array(50);
-var pawsy = new Array(50);
-
-function preload() {
-  // load the sound, but don't play it yet
-  soundFile = loadSound('../../music/Broke_For_Free_-_01_-_As_Colorful_As_Ever.mp3')
   paw = loadImage("paw.png");
->>>>>>> origin/master
+
 }
 
 function setup() {
@@ -130,29 +125,7 @@ function draw() {
   stroke(0);
   line(0, ythreshold, 19, ythreshold);
 }
-<<<<<<< HEAD
 
-function drawPaw(x, y, w, h){
-  ellipseMode(CORNER);
-  fill(255); //White
-  ellipse(x+w*0.1, y, w*0.8, h*0.8);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x, y, w/7*1.5, h/2);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x+2*w/7, y-h/3, w/7*1.5, h/1.8);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x+4*w/7, y-h/3, w/7*1.5, h/1.8);
-
-  ellipseMode(CORNER);
-  fill(100); //Gray
-  ellipse(x+6*w/7, y, w/7*1.5, h/2);
-}
 
 function drawDogMouthOpen() {
   image(imgDogOpenMouth, 0, 0);
@@ -188,5 +161,4 @@ function onBeat() {
     openMouthTrue = 1;
   }
 }
-=======
->>>>>>> origin/master
+
