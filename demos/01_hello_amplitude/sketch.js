@@ -13,6 +13,7 @@ var img;
 var soundFile;
 
 var mapMax = 1.0;
+// hello
 
 var backgroundColor;
 var paw;
@@ -48,7 +49,7 @@ var woof;
 
 function preload() {
   // load the sound, but don't play it yet
-  soundFile = loadSound('06 Shake It Off.m4a');
+  soundFile = loadSound('Baha Men - Who Let The Dogs Out + {.mp3');
   soundFile.volume = 0.1;
   woof = new Audio('woof.mp3');
   woof.volume = 1.0;
