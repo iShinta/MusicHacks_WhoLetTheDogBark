@@ -2,7 +2,7 @@
  *  Draw a buffer of audio samples. Use the p5.FFT
  *  (Web Audio API Analyzer Node) as a fast way to
  *  get the time domain data, pre-fft.
- * 
+ *
  *  Press T to toggle input between soundFile, mic, and oscillator.
  *  Oscillator's frequency is mapped to mouse position.
  *
@@ -34,11 +34,13 @@ function setup() {
   osc.amp(0.5);
   osc.freq(10);
 
-  mic.start();
-  analyzer.setInput(mic);
+
 
   // load the soundfile in setup, but we won't play it until user hits "T"
   soundFile = loadSound('../../music/Broke_For_Free_-_01_-_As_Colorful_As_Ever.mp3');
+  soundFile.start();
+
+  analyzer.setInput(soundFile);
 }
 
 function draw() {
@@ -156,4 +158,3 @@ function toggleInput(mode) {
       break;
   }
 }
-

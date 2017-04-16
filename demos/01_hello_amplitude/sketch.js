@@ -21,6 +21,8 @@ var threshold = 0.1;
 var cutoff = 0;
 var decayRate = 0.95;
 
+var fft;
+
 
 // :: Beat Detect Variables
 // how many draw loop frames before the beatCutoff starts to decay
@@ -73,6 +75,8 @@ function setup() {
   amplitudeDog = new p5.Amplitude();
   amplitudeDog.setInput(soundFile);
   amplitudeDog.smooth(0.9); // <-- try this!
+
+  fft = new p5.FFT();
 }
 
 function draw() {
@@ -131,6 +135,26 @@ function draw() {
   rect(0, y, 20, y);
   stroke(0);
   line(0, ythreshold, 19, ythreshold);
+
+  var spectrum = fft.analyze();
+  // noStroke();
+  // for (var i = 0; i < spectrum.length; i++){
+  //   var x = map(i, 0, spectrum.length, 0, width);
+  //   var h = -height + map(spectrum[i], 0, 255, height, 0);
+  //   rect(x, height, width / spectrum.length, h )
+  // }
+
+  var waveform = fft.waveform();
+  noFill();
+  beginShape();
+  stroke(255,255,255); // color (255,0,0) is red
+  strokeWeight(3);
+  for (var i = 0; i< waveform.length; i++){
+    var x = map(i, 0, waveform.length, width/3.2, width);
+    var y = map( waveform[i], -1, 1, height/5, height/2.5);
+    vertex(x,y);
+  }
+  endShape();
 }
 
 
